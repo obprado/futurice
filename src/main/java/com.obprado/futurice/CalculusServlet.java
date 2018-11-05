@@ -15,12 +15,23 @@ public class CalculusServlet extends HttpServlet {
             "  \"result\": \"%s\"\n" +
             "}";
 
+    private static final String EXPRESSION_MALFORMED_TEMPLATE = "{ \n" +
+            "  \"error\": \"true\",\n" +
+            "  \"message\": \"%s\"\n" +
+            "}";
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         byte[] encodedQuery = request.getParameter("query").getBytes();
         String query = new String(Base64.getDecoder().decode(encodedQuery));
-        BigDecimal result = new Calculator().calculate(query);
 
-        response.getWriter().write(String.format(CALCULATION_RESPONSE_TEMPLATE, result));
+
+        try {
+            BigDecimal result = new Calculator().calculate(query);
+            response.getWriter().write(String.format(CALCULATION_RESPONSE_TEMPLATE, result));
+        } catch (CalculusException e) {
+            response.getWriter().write(String.format(EXPRESSION_MALFORMED_TEMPLATE, e.getMessage()));
+        }
+
     }
 
 }
