@@ -8,6 +8,11 @@ import java.math.BigDecimal;
 public class Calculator {
 
     public BigDecimal calculate(String query) throws CalculusException {
+        String simpleMathematicalExpression = "([0-9]|\\s|\\(|\\)|\\*|\\/|\\+|\\-)*";
+        if (!query.matches(simpleMathematicalExpression)) {
+            throw new CalculusException(query);
+        }
+
         try {
             return new Expression(query).eval();
         } catch (ExpressionException e) {

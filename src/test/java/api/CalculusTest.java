@@ -29,4 +29,14 @@ public class CalculusTest extends AcceptanceTest {
                 "  \"message\": \"Invalid input 'not a valid expression'. Expressions must be composed exclusively of numbers, whitespaces, round brackets and the operators: *, /, +, -\"\n" +
                 "}");
     }
+
+    @Test
+    public void shouldRejectQueriesWithInvalidEnconding() throws IOException {
+        whenWeMakeAGetRequestTo("/calculus?query=this_is_not_a_valid_64_enconded_string");
+        assertThat(response.getStatusLine().getStatusCode()).isEqualTo(200);
+        assertThat(responseBody).isEqualTo("{ \n" +
+                "  \"error\": \"true\",\n" +
+                "  \"message\": \"Invalid parameter 'this_is_not_a_valid_64_enconded_string'. " +
+                "The parameter must be enconded in base 64\"\n}");
+    }
 }
