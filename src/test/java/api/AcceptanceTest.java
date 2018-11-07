@@ -21,7 +21,7 @@ public abstract class AcceptanceTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        calculusApp.run();
+        calculusApp.run(PORT);
     }
 
     @AfterClass

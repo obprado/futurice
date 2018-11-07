@@ -12,11 +12,10 @@ public class CalculusApp {
     private Server server;
 
     public static void main(String[] args) throws Exception {
-        new CalculusApp().run();
+        new CalculusApp().run(Integer.valueOf(args[0]));
     }
 
-    public void run() throws Exception {
-        int port = 80;
+    public void run(Integer port) throws Exception {
         server = new Server();
         server.addConnector(serverConnector(port, server));
         server.setHandler(calculusServletHandler());
