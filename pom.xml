@@ -82,7 +82,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.obprado.mobimeo.MobilityApp</mainClass>
+                            <mainClass>com.obprado.futurice.CalculusApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
