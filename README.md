@@ -25,3 +25,9 @@ java -jar futurice-1.0-SNAPSHOT-jar-with-dependencies.jar 80
 Just commit to master, circleCI and heroku will take care of it. ;)
 
 Look at `.circleci/config.yml` and `Procfile` if you want to se the `CI/CD pipeline as code`
+
+### I want to see it in production
+
+Just paste this on your browser
+
+`https://calculator-futurice.herokuapp.com/calculus?query=MiAqICgyMy8oMyozKSktIDIzICogKDIqMyk=`
