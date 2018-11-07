@@ -15,6 +15,13 @@ public class CalculatorTest {
     }
 
     @Test
+    public void shouldEvaluateDecimalNumbers() throws CalculusException {
+        shouldCalculate("1.5 * 3", "4.5");
+        shouldCalculate("0.0 + 1.0", "1");
+        throwsCalculusExceptionFor("1........5");
+    }
+
+    @Test
     public void shouldPrioritizeMultiplyAndDivideOverSubstractAndAdd() throws CalculusException {
         shouldCalculate("40 - 40 * 2 + 1", "-39");
         shouldCalculate("40 - 40 / 2 + 1", "21");
@@ -74,6 +81,7 @@ public class CalculatorTest {
         throwsCalculusExceptionFor("(3)+");
         throwsCalculusExceptionFor("*(3)");
         throwsCalculusExceptionFor("/(3)");
+        throwsCalculusExceptionFor("...................................");
     }
 
     private void shouldCalculate(String expression, String expected) throws CalculusException {
